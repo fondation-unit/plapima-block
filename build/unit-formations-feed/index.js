@@ -20,19 +20,16 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Edit)
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editor.scss */ "./src/unit-formations-feed/editor.scss");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _plapimaSessions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./plapimaSessions */ "./src/unit-formations-feed/plapimaSessions.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
 /**
  * Retrieves the translation of text.
  *
@@ -57,119 +54,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-class plapimaSessions extends _wordpress_element__WEBPACK_IMPORTED_MODULE_4__.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formations: [],
-      loading: true
-    };
-  }
-  componentDidMount() {
-    this.runApiFetch();
-  }
-  runApiFetch() {
-    wp.apiFetch({
-      path: 'unit-plapima/v1/sessions'
-    }).then(data => {
-      this.setState({
-        formations: data,
-        loading: false
-      });
-    });
-  }
-  render() {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      className: "wp-block",
-      children: this.state.loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        className: "d-flex flex-row container",
-        children: this.state.formations.map(currentFormation => {
-          console.log(currentFormation);
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            className: "col-md-4 card",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                src: currentFormation.illustration.src,
-                alt: currentFormation.illustration.alt
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-              children: currentFormation.formation.post_title
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {})]
-          }, currentFormation.formation.ID);
-        })
-      })
-    });
-  }
+function Edit(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_plapimaSessions__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+  });
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (plapimaSessions);
-
-//export default function Edit() {
-//
-//	return (
-//		<div {...useBlockProps()}>
-//			{/*{ console.log(`formation: ${data.hasResolvedFormation}`) }*/}
-//			{/*{ console.log(`module: ${data.hasResolvedModule}`) }*/}
-//			{/*{ console.log(`category: ${data.hasResolvedCategory}`) }*/}
-//			<FormationsList hasResolved={data.hasResolvedSession && data.hasResolvedModule
-//				&& data.hasResolvedCategory}
-//							sessions={data.sessions}
-//							modules={data.modules}
-//							categories={data.categories}/>
-//		</div>
-//	);
-//}
-//
-//function FormationsList({hasResolved, sessions, modules, categories}) {
-//	//	useEffect(() => {
-//	//		console.log('formations :', modules);
-//	//		console.log('modules :', categories);
-//	//		console.log('categories :', formations);
-//	//		console.log('hasResolved :', hasResolved);
-//	//	}, [modules, categories, formations]);
-//
-//	if (! hasResolved) {
-//		return <Spinner/>;
-//	}
-//	const formations = [];
-//	sessions.forEach((session => {
-//		const metas = useSelect(
-//			select => {
-//				return {
-//					meta: select('core/editor').getEditedPostAttribute('meta')
-//				};
-//			});
-//
-//		console.log(metas);
-//	}));
-//
-//	if (! sessions?.length) {
-//		return <div>Aucune formation pour le moment</div>;
-//	}
-//	const cat = [];
-//	const mod = [];
-//
-//	formations.forEach((formation => {
-//		const categories = useSelect(
-//			select => {
-//				return {
-//					categorie: select(coreDataStore).getEntityRecord('taxonomy', 'categorie', formation.categorie)
-//				};
-//			});
-//		cat[formation.id] = categories.categorie.name;
-//		const modules = useSelect(
-//			select => {
-//				return {
-//					module: select(coreDataStore).getEntityRecord('taxonomy', 'module', formation.module)
-//				};
-//			});
-//		mod[formation.id] = modules.module.name;
-//	}));
-//
-//	return (
-//
-//	);
-//}
 
 /***/ }),
 
@@ -236,6 +126,77 @@ __webpack_require__.r(__webpack_exports__);
    */
   save: _save__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
+
+/***/ }),
+
+/***/ "./src/unit-formations-feed/plapimaSessions.js":
+/*!*****************************************************!*\
+  !*** ./src/unit-formations-feed/plapimaSessions.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ PlapimaSessions)
+/* harmony export */ });
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+class PlapimaSessions extends _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formations: [],
+      loading: true
+    };
+  }
+  componentDidMount() {
+    this.runApiFetch();
+  }
+  runApiFetch() {
+    wp.apiFetch({
+      path: 'unit-plapima/v1/sessions'
+    }).then(data => {
+      this.setState({
+        formations: data,
+        loading: false
+      });
+    });
+  }
+  render() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: this.state.loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "d-flex flex-row container",
+        children: this.state.formations.map(currentFormation => {
+          console.log(currentFormation);
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            className: "col-md-4 card",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                src: currentFormation.illustration.src,
+                alt: currentFormation.illustration.alt
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              children: currentFormation.formation.post_title
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              children: currentFormation.categorie
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              children: currentFormation.module
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              children: currentFormation.niveau
+            })]
+          }, currentFormation.formation.ID);
+        })
+      })
+    });
+  }
+}
 
 /***/ }),
 

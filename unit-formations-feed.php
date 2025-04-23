@@ -65,6 +65,9 @@ add_action('rest_api_init', function () {
 	register_rest_route('unit-plapima/v1', '/sessions', [
 		'methods' => 'GET',
 		'callback' => 'get_next_sessions',
+		'permission_callback' => function($request) {
+			return current_user_can('moderate_comments');
+		},
 	]);
 });
 
