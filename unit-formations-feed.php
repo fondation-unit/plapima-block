@@ -93,7 +93,7 @@ function get_next_sessions()
 		$formationReturn = [];
 		foreach ($sessionsAVenir->posts as $session) {
 			$formationID = get_field('formation', $session->ID);
-			if (! in_array($formationID[0]->ID, $formations) && count($formations) < 3) {
+			if (! in_array($formationID[0]->ID, $formations) && count($formations) < 4) {
 				$formations[] = $formationID[0]->ID;
 			}
 		}
@@ -107,7 +107,7 @@ function get_next_sessions()
 
 			$formationReturn[] = [
 				'formation' => $post,
-				'illustration' => $illustration ? altTextForFormationImages($illustration, 'large') : null,
+				'illustration' => $illustration ? altTextForFormationImages($illustration, 'medium') : null,
 				'categorie' => $categorie,
 				'module' => $module,
 				'niveau' => $niveau,

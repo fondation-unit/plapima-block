@@ -32,11 +32,11 @@ export default class PlapimaSessions extends Component {
 					<Spinner/>
 				) : (
 
-					<div className="d-flex flex-row container">
+					<div className="d-flex flex-row">
 						{this.state.formations.map(currentFormation => {
 							console.log(currentFormation)
 							return (
-								<div key={currentFormation.formation.ID} className='col-md-4 card'>
+								<div key={currentFormation.formation.ID} className='col-md-3'>
 									<div><img src={currentFormation.illustration.src} alt={currentFormation.illustration.alt}/></div>
 									<div>{currentFormation.formation.post_title}</div>
 									<div>{currentFormation.categorie}</div>

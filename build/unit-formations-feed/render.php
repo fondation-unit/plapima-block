@@ -19,7 +19,7 @@ $formations = [];
 if ($sessionsAVenir->have_posts()):
 	foreach($sessionsAVenir->posts as $session){
 		$formationID = get_field('formation', $session->ID);
-		if(!in_array($formationID[0]->ID, $formations) && count($formations) < 3){
+		if(!in_array($formationID[0]->ID, $formations) && count($formations) < 4){
 			$formations[] = $formationID[0]->ID;
 		}
 	}
@@ -34,7 +34,7 @@ if ($sessionsAVenir->have_posts()):
 					$terms = get_field('categorie', $post->ID)->name;
 
 					?>
-					<div class="card col-md-4 d-flex flex-column">
+					<div class="card col-md-3 d-flex flex-column">
 						<div class="image">
 							<?php
 							if ($illustration):
