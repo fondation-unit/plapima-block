@@ -66,7 +66,7 @@ add_action('rest_api_init', function () {
 		'methods' => 'GET',
 		'callback' => 'get_next_sessions',
 		'permission_callback' => function($request) {
-			return current_user_can('moderate_comments');
+			return true;
 		},
 	]);
 });
@@ -107,7 +107,7 @@ function get_next_sessions()
 
 			$formationReturn[] = [
 				'formation' => $post,
-				'illustration' => $illustration ? altTextForFormationImages($illustration, 'medium') : null,
+				'illustration' => $illustration ? altTextForFormationImages($illustration, 'medium') : [],
 				'categorie' => $categorie,
 				'module' => $module,
 				'niveau' => $niveau,

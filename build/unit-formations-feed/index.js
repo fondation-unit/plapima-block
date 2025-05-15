@@ -172,15 +172,16 @@ class PlapimaSessions extends _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Co
   render() {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       children: this.state.loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.Spinner, {}) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "d-flex flex-row",
+        className: "d-flex flex-row flex-wrap",
         children: this.state.formations.map(currentFormation => {
-          console.log(currentFormation);
+          let src = currentFormation.illustration ? currentFormation.illustration.src : '';
+          let alt = currentFormation.illustration ? currentFormation.illustration.alt : '';
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "col-md-3",
+            className: "col-md-6",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                src: currentFormation.illustration.src,
-                alt: currentFormation.illustration.alt
+                src: src,
+                alt: alt
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               children: currentFormation.formation.post_title
