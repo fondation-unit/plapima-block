@@ -36,22 +36,22 @@ if ($sessionsAVenir->have_posts()):
 				$illustration = get_field('illustration', $post->ID);
 
 				?>
-				<div class="formation-home-card d-flex flex-column py-4">
-					<h3>
+				<div class="formation-home-card d-flex flex-column py-4 rounded">
+					<h3 class="rounded">
 						<a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
 					</h3>
-					<div class="image">
+					<div class="image rounded">
 						<?php
 						if ($illustration):
 							$img = altTextForFormationImages($illustration, 'large');
 							?>
-							<img src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
+							<img class="rounded" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
 
 						<?php
 						endif;
 						?>
 					</div>
-					<div class="content d-flex flex-column">
+					<div class="content d-flex flex-column rounded">
 
 						<?php
 						if ($typeFormation['value'] === 'base'):
