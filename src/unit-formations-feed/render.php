@@ -34,6 +34,7 @@ if ($sessionsAVenir->have_posts()):
 				if ($typeFormation['value'] === 'base')
 					$terms = get_field('categorie', $post->ID)->name;
 				$illustration = get_field('illustration', $post->ID);
+				$resume = get_field('resume', $post->ID);
 
 				?>
 				<div class="formation-home-card d-flex flex-column py-4 rounded">
@@ -59,6 +60,7 @@ if ($sessionsAVenir->have_posts()):
 							<p><?php echo $terms; ?></p>
 						<?php
 						endif;
+						echo $resume ? '<div class="resume">'.createNewsExcerpt(100, $resume).'</div>' : '';
 						?>
 						<div class="link">
 							<a href="<?php echo get_permalink($post->ID); ?>">
