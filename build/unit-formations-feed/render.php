@@ -34,7 +34,7 @@ if ($sessionsAVenir->have_posts()):
 				if ($typeFormation['value'] === 'base')
 					$terms = get_field('categorie', $post->ID)->name;
 				$illustration = get_field('illustration', $post->ID);
-				$resume = get_field('resume', $post->ID);
+				$resume = get_field('libelle_de_la_formation', $post->ID);
 
 				?>
 				<div class="formation-home-card d-flex flex-column py-4 rounded">

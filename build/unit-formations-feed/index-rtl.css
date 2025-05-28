@@ -9,3 +9,78 @@
 .col-md-3 {
   width: 24%;
 }
+
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.col-md-6 {
+  width: 50%;
+}
+
+.formation-home-card {
+  width: 48%;
+  margin-left: 2%;
+  position: relative;
+  height: 350px;
+  margin-bottom: 2%;
+}
+.formation-home-card:nth-of-type(2n+2) {
+  margin-left: 0;
+}
+.formation-home-card h3 {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  left: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: all 0.4s;
+  z-index: 6;
+  line-height: 2rem;
+  padding: 10px;
+}
+.formation-home-card h3 a {
+  font-size: 2rem;
+  text-decoration: none;
+}
+.formation-home-card .image {
+  width: 100%;
+  height: 350px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+.formation-home-card .image img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.formation-home-card .content {
+  position: absolute;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  right: 30px;
+  left: 30px;
+  bottom: 30px;
+  top: calc(100% - 160px);
+  z-index: 5;
+  height: 130px;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+.formation-home-card .content h3 {
+  font-family: Roboto, sans-serif;
+  font-size: 1.25rem;
+}
+.formation-home-card .link a {
+  text-underline-offset: 5px;
+}
