@@ -36,14 +36,16 @@ export default class PlapimaSessions extends Component {
 						{this.state.formations.map(currentFormation => {
 							let src = currentFormation.illustration ? currentFormation.illustration.src : '';
 							let alt = currentFormation.illustration ? currentFormation.illustration.alt : '';
-
+							let cat = ((currentFormation.type === 'base') ? '<p>{currentFormation.categorie}</p>' :'');
 							return (
-								<div key={currentFormation.formation.ID} className='col-md-6'>
-									<div><img src={src} alt={alt}/></div>
-									<div>{currentFormation.formation.post_title}</div>
-									<div>{currentFormation.categorie}</div>
-									<div>{currentFormation.module}</div>
-									<div>{currentFormation.niveau}</div>
+								<div key={currentFormation.formation.ID} className='formation-home-card d-flex flex-column py-4 rounded'>
+									<h3 className='rounded'>{currentFormation.formation.post_title}</h3>
+									<div className='image rounded'>
+										<img className='rounded' src={src} alt={alt} />
+									</div>
+									<div className="content d-flex flex-column rounded">
+									{cat}
+									</div>
 								</div>
 							);
 						})}

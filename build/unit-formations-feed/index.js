@@ -176,21 +176,22 @@ class PlapimaSessions extends _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Co
         children: this.state.formations.map(currentFormation => {
           let src = currentFormation.illustration ? currentFormation.illustration.src : '';
           let alt = currentFormation.illustration ? currentFormation.illustration.alt : '';
+          let cat = currentFormation.type === 'base' ? '<p>{currentFormation.categorie}</p>' : '';
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "col-md-6",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            className: "formation-home-card d-flex flex-column py-4 rounded",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+              className: "rounded",
+              children: currentFormation.formation.post_title
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              className: "image rounded",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                className: "rounded",
                 src: src,
                 alt: alt
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              children: currentFormation.formation.post_title
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              children: currentFormation.categorie
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              children: currentFormation.module
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              children: currentFormation.niveau
+              className: "content d-flex flex-column rounded",
+              children: cat
             })]
           }, currentFormation.formation.ID);
         })

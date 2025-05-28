@@ -104,6 +104,7 @@ function get_next_sessions()
 			$categorie = get_field('categorie', $post->ID)->name;
 			$module = get_field('module', $post->ID)->name;
 			$niveau = get_field('niveau', $post->ID)->name;
+			$type = get_field('type_de_formation', $post->ID);
 
 			$formationReturn[] = [
 				'formation' => $post,
@@ -111,6 +112,7 @@ function get_next_sessions()
 				'categorie' => $categorie,
 				'module' => $module,
 				'niveau' => $niveau,
+				'type' => $type,
 			];
 		}
 
