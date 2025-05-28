@@ -17,63 +17,73 @@ $sessionsAVenir = new WP_Query([
 
 $formations = [];
 if ($sessionsAVenir->have_posts()):
-	foreach($sessionsAVenir->posts as $session){
+	foreach ($sessionsAVenir->posts as $session) {
 		$formationID = get_field('formation', $session->ID);
-		if(!in_array($formationID[0]->ID, $formations) && count($formations) < 4){
+		if (! in_array($formationID[0]->ID, $formations) && count($formations) < 4) {
 			$formations[] = $formationID[0]->ID;
 		}
 	}
 
-	if(count($formations) > 0):
+	if (count($formations) > 0):
 		?>
-		<div class="d-flex flex-md-row flex-column">
+		<div class="d-flex flex-md-row flex-column flex-wrap">
 			<?php
-				foreach($formations as $formation){
-					$post = get_post($formation);
-					$illustration = get_field('illustration', $post->ID);
+			foreach ($formations as $formation) {
+				$post = get_post($formation);
+				$typeFormation = get_field('type_de_formation', $post->ID);
+				if ($typeFormation['value'] === 'base')
 					$terms = get_field('categorie', $post->ID)->name;
+				$illustration = get_field('illustration', $post->ID);
+				$resume = get_field('resume', $post->ID);
 
-					?>
-					<div class="card col-md-3 d-flex flex-column">
-						<div class="image">
-							<?php
-							if ($illustration):
-								$img = altTextForFormationImages($illustration, 'large');
-								?>
-								<a href="<?php echo get_permalink($post->ID); ?>">
-									<img src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
-								</a>
-							<?php
-							endif;
+				?>
+				<div class="formation-home-card d-flex flex-column py-4 rounded">
+					<h3 class="rounded">
+						<a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
+					</h3>
+					<div class="image rounded">
+						<?php
+						if ($illustration):
+							$img = altTextForFormationImages($illustration, 'large');
 							?>
-						</div>
-						<div class="content">
-							<h2>
-								<a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
-							</h2>
-							<p><?php echo $terms; ?></p>
-							<div class="link d-flex justify-content-end">
-								<a href="<?php echo get_permalink($post->ID); ?>" class="btn btn-primary">
-									Détail de la formation
-								</a>
-							</div>
-						</div>
+							<img class="rounded" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
 
+						<?php
+						endif;
+						?>
 					</div>
-					<?php
-				}
+					<div class="content d-flex flex-column rounded">
+
+						<?php
+						if ($typeFormation['value'] === 'base'):
+							?>
+							<p><?php echo $terms; ?></p>
+						<?php
+						endif;
+						echo $resume ? '<div class="resume">'.createNewsExcerpt(100, $resume).'</div>' : '';
+						?>
+						<div class="link">
+							<a href="<?php echo get_permalink($post->ID); ?>">
+								Détail de la formation
+							</a>
+						</div>
+					</div>
+
+				</div>
+				<?php
+			}
 
 			?>
 		</div>
-<?php
+	<?php
 
 	else:
 		?>
 		<div class="d-flex flex-md-row flex-column">
 			<p>Aucune session de formation à venir pour le moment</p>
 		</div>
-<?php
+	<?php
 
-		endif;
+	endif;
 
 endif;
