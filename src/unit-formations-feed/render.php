@@ -44,7 +44,7 @@ if ($sessionsAVenir->have_posts()):
 					<div class="image rounded">
 						<?php
 						if ($illustration):
-							$img = altTextForFormationImages($illustration, 'large');
+							$img = wp_is_mobile() ? altTextForFormationImages($illustration, 'medium') :  altTextForFormationImages($illustration, 'large');
 							?>
 							<img class="rounded" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
 
