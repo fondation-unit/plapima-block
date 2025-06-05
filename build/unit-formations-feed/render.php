@@ -37,7 +37,7 @@ if ($sessionsAVenir->have_posts()):
 				$resume = get_field('libelle_de_la_formation', $post->ID);
 
 				?>
-				<div class="formation-home-card d-flex flex-column py-4 rounded mb-md-0 mb-4">
+				<div class="formation-home-card d-flex flex-column py-4 rounded mb-4">
 					<h3 class="rounded">
 						<a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
 					</h3>
