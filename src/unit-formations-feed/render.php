@@ -37,20 +37,19 @@ if ($sessionsAVenir->have_posts()):
 				$resume = get_field('libelle_de_la_formation', $post->ID);
 
 				?>
-				<div class="formation-home-card d-flex flex-column py-4 rounded">
+				<div class="formation-home-card d-flex flex-column py-4 rounded mb-md-0 mb-4">
 					<h3 class="rounded">
 						<a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
 					</h3>
 					<div class="image rounded">
 						<?php
-						if ($illustration):
-							$img = wp_is_mobile() ? altTextForFormationImages($illustration, 'medium') :  altTextForFormationImages($illustration, 'large');
-							?>
-							<img class="rounded" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
-
-						<?php
-						endif;
+						$size = wp_is_mobile() ? 'medium' : 'large';
+						$img = $illustration
+							? altTextForFormationImages($illustration, $size) : getBasicImage('2025/06',
+								'img-bis-formations.png', $size);
 						?>
+						<img class="rounded" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
+
 					</div>
 					<div class="content d-flex flex-column rounded">
 
@@ -60,7 +59,7 @@ if ($sessionsAVenir->have_posts()):
 							<p><?php echo $terms; ?></p>
 						<?php
 						endif;
-						echo $resume ? '<div class="resume">'.createNewsExcerpt(100, $resume).'</div>' : '';
+						echo $resume ? '<div class="resume">' . createNewsExcerpt(100, $resume) . '</div>' : '';
 						?>
 						<div class="link">
 							<a href="<?php echo get_permalink($post->ID); ?>">
