@@ -48,7 +48,7 @@ if ($sessionsAVenir->have_posts()):
 							? altTextForFormationImages($illustration, $size) : getBasicImage('2025/06',
 								'img-bis-formations.png', $size);
 						?>
-						<img class="rounded" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
+						<img class="rounded lozad" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
 
 					</div>
 					<div class="content d-flex flex-column rounded">
