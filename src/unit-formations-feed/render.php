@@ -36,21 +36,16 @@ if ($sessionsAVenir->have_posts()):
 				$illustration = get_field('illustration', $post->ID);
 				$resume = get_field('libelle_de_la_formation', $post->ID);
 
+				$size = wp_is_mobile() ? 'medium' : 'large';
+				$img = $illustration
+					? altTextForFormationImages($illustration, $size) : getBasicImage('2025/06',
+						'img-bis-formations.png', $size);
+
 				?>
-				<div class="formation-home-card d-flex flex-column py-4 rounded mb-4">
+				<div class="formation-home-card d-flex flex-column py-4 rounded mb-4 lozad" data-background-image="<?php echo $img['src']; ?>">
 					<h3 class="rounded">
 						<a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
 					</h3>
-					<div class="image rounded">
-						<?php
-						$size = wp_is_mobile() ? 'medium' : 'large';
-						$img = $illustration
-							? altTextForFormationImages($illustration, $size) : getBasicImage('2025/06',
-								'img-bis-formations.png', $size);
-						?>
-						<img class="rounded lozad" src="<?php echo $img['src']; ?>" alt="<?php echo $img['alt']; ?>">
-
-					</div>
 					<div class="content d-flex flex-column rounded">
 
 						<?php
