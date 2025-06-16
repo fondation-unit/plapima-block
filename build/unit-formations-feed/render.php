@@ -39,7 +39,7 @@ if ($sessionsAVenir->have_posts()):
 				$size = wp_is_mobile() ? 'medium' : 'large';
 				$img = $illustration
 					? altTextForFormationImages($illustration, $size) : getBasicImage('2025/06',
-						'img-bis-formations.png', $size);
+						'img-bis-formations.png', 'thumbnail');
 
 				?>
 				<div class="formation-home-card d-flex flex-column py-4 rounded mb-4 lozad" data-background-image="<?php echo $img['src']; ?>">
