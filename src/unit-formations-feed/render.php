@@ -20,7 +20,7 @@ $sessionsFutures = [];
 if ($sessionsAVenir->have_posts()):
 	foreach ($sessionsAVenir->posts as $session) {
 		$formationID = get_field('formation', $session->ID);
-		if (! in_array($formationID[0]->ID, $formations) && count($formations) <= 3) {
+		if (! in_array($formationID[0]->ID, $formations) && count($formations) < 3) {
 			$formations[] = $formationID[0]->ID;
 			$sessions = new WP_Query([
 				'post_type' => 'session',
