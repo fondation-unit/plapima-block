@@ -11,6 +11,16 @@
 	"supports": {
 		"html": false
 	},
+	"attributes": {
+		"block_title": {
+			"type": "string",
+			"default": "Nos formations"
+		},
+		"sub_title": {
+			"type": "string",
+			"default": "Retrouvez nos formations à venir ci-dessous"
+		}
+	},
 	"textdomain": "unit-formations-feed",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",

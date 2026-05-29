@@ -16,6 +16,16 @@ return array(
 		'supports' => array(
 			'html' => false
 		),
+		'attributes' => array(
+			'block_title' => array(
+				'type' => 'string',
+				'default' => 'Nos formations'
+			),
+			'sub_title' => array(
+				'type' => 'string',
+				'default' => 'Retrouvez nos formations à venir ci-dessous'
+			)
+		),
 		'textdomain' => 'unit-formations-feed',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',

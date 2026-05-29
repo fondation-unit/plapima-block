@@ -121,3 +121,28 @@ function get_next_sessions()
 		return null;
 	endif;
 }
+
+function translateDate($date, $year = false){
+	$expDate = explode(' ', $date);
+	$expUnderDate = explode('/', $expDate[0]);
+	return $expUnderDate[0].' '.MonthToFr($expUnderDate[1]).(($year) ? ' '.$expUnderDate[2] : '');
+}
+
+
+function MonthToFr($month){
+	$moisFr = [
+		'01' => 'Janvier',
+		'02' => 'Février',
+		'03' => 'Mars',
+		'04' => 'Avril',
+		'05' => 'Mai',
+		'06' => 'Juin',
+		'07' => 'Juillet',
+		'08' => 'Août',
+		'09' => 'Septembre',
+		'10' => 'Octobre',
+		'11' => 'Novembre',
+		'12' => 'Décembre',
+	];
+	return $moisFr[$month];
+}
