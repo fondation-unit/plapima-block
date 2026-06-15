@@ -54,7 +54,7 @@ if ($sessionsAVenir->have_posts()):
 
 	if (count($formations) > 0):
 		?>
-		<div class="d-flex flex-md-row flex-column justify-content-between titre-formations-home align-items-end mb-4">
+		<div class="d-flex flex-md-row flex-column justify-content-md-between titre-formations-home align-items-md-end mb-4">
 			<h2><?php echo $attributes['block_title']; ?></h2>
 			<a href="<?php echo get_permalink(CATALOG_PAGE); ?>" class="btn">Découvrir toutes les formations</a>
 		</div>
