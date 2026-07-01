@@ -16,18 +16,52 @@ $sessionsAVenir = new WP_Query([
 ]);
 
 $formations = [];
+$sessionsFutures = [];
 if ($sessionsAVenir->have_posts()):
 	foreach ($sessionsAVenir->posts as $session) {
 		$formationID = get_field('formation', $session->ID);
-		if (! in_array($formationID[0]->ID, $formations) && count($formations) < 4) {
+		if (! in_array($formationID[0]->ID, $formations) && count($formations) < 3) {
+
 			$formations[] = $formationID[0]->ID;
+			$sessions = new WP_Query([
+				'post_type' => 'session',
+				'post_status' => 'publish',
+				'meta_query' => [
+					'relation' => 'AND',
+					[
+						'relation' => 'AND',
+						[
+							'key' => 'formation',
+							'value' => $formationID[0]->ID,
+							'compare' => 'LIKE',
+						],
+						[
+							'key' => 'date_de_debut',
+							'value' => $today,
+							'compare' => '>',
+						],
+					],
+				],
+				'meta_key' => 'date_de_debut',
+				'posts_per_page' => 1,
+				'orderby' => 'meta_value',
+				'order' => 'ASC',
+				'fields' => 'ids',
+			]);
+			$sessionsFutures[$formationID[0]->ID] = $sessions->posts[0];
 		}
 	}
 
 	if (count($formations) > 0):
 		?>
-		<div class="d-flex flex-md-row flex-column flex-wrap">
+		<div class="d-flex flex-md-row flex-column justify-content-md-between titre-formations-home align-items-md-end mb-md-4 mb-2">
+			<h2><?php echo $attributes['block_title']; ?></h2>
+			<a href="<?php echo get_permalink(CATALOG_PAGE); ?>" class="btn">Découvrir toutes les formations</a>
+		</div>
+		<p class="sous-titre-formation"><?php echo $attributes['sub_title']; ?></p>
+		<div class="d-flex flex-md-row flex-column flex-wrap mt-4">
 			<?php
+
 			foreach ($formations as $formation) {
 				$post = get_post($formation);
 				$typeFormation = get_field('type_de_formation', $post->ID);
@@ -38,17 +72,47 @@ if ($sessionsAVenir->have_posts()):
 
 				$size = wp_is_mobile() ? 'medium' : 'large';
 				$img = $illustration
-					? altTextForFormationImages($illustration, $size) : getBasicImage('2025/06',
+					? altTextForFormationImages($illustration, $size)
+					: getBasicImage('2025/06',
 						'img-bis-formations.png', wp_is_mobile() ? 'medium' : 'medium_large');
 
-				?>
-				<div class="formation-home-card d-flex flex-column py-4 rounded mb-4 lozad" data-background-image="<?php echo $img['src']; ?>">
-					<h3 class="rounded">
-						<a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
-					</h3>
-					<div class="content d-flex flex-column rounded">
+				$dateDebut = get_field('date_de_debut', $sessionsFutures[$formation]);
+				$dateFin = get_field('date_de_fin', $sessionsFutures[$formation]);
 
+				?>
+				<div class="formation-home-card d-flex flex-column rounded mb-4">
+					<div class="image">
+						<img src="<?php echo $img['src']; ?>" alt="">
+					</div>
+
+					<div class="content d-flex flex-column">
+						<div class="themes d-flex flex-row">
+							<?php
+							$taxos = get_the_terms($post->ID, 'theme_formation');
+							if ($taxos) {
+								foreach ($taxos as $taxo):
+
+									$classe = get_term_meta($taxo->term_id, 'classe');
+									?>
+									<div class="theme">
+										<i class="icon-<?php echo $classe[0]; ?>"></i>
+									</div>
+								<?php
+								endforeach;
+							}
+							?>
+						</div>
+						<h3>
+							<?php echo $post->post_title; ?>
+						</h3>
+						<hr>
+						<div class="dates mb-4 mt-2">
+							<i class="icon-calendrier"></i><span class="date ms-2">Du <?php echo translateDate($dateDebut); ?>
+																				   au <?php echo translateDate($dateFin,
+									true); ?></span>
+						</div>
 						<?php
+
 						if ($typeFormation['value'] === 'base'):
 							?>
 							<p><?php echo $terms; ?></p>
@@ -57,10 +121,14 @@ if ($sessionsAVenir->have_posts()):
 						echo $resume ? '<div class="resume">' . createNewsExcerpt(100, $resume) . '</div>' : '';
 						?>
 						<div class="link">
-							<a href="<?php echo get_permalink($post->ID); ?>">
-								Détail de la formation
-							</a>
+							<div class="btn btn-primary">Détail de la formation
+								<i class="fa-solid fa-arrow-right ms-2"></i></div>
 						</div>
+						<a href="<?php echo get_permalink($post->ID); ?>" class="link-content">
+							<span class="sr-only">Voir les détails de
+												  l'actualité</span>
+							<i class="icon-fleche-actu-projet" aria-hidden="true"></i>
+						</a>
 					</div>
 
 				</div>
