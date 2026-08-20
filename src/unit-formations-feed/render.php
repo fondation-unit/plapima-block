@@ -94,7 +94,7 @@ if ($sessionsAVenir->have_posts()):
 
 									$classe = get_term_meta($taxo->term_id, 'classe');
 									?>
-									<div class="theme">
+									<div class="theme" aria-label="<?php echo $taxo->name; ?>">
 										<i class="icon-<?php echo $classe[0]; ?>"></i>
 									</div>
 								<?php
@@ -105,9 +105,9 @@ if ($sessionsAVenir->have_posts()):
 						<h3>
 							<?php echo $post->post_title; ?>
 						</h3>
-						<hr>
+						<hr aria-hidden="true">
 						<div class="dates mb-4 mt-2">
-							<i class="icon-calendrier"></i><span class="date ms-2">Du <?php echo translateDate($dateDebut); ?>
+							<i class="icon-calendrier" aria-hidden="true"></i><span class="date ms-2">Du <?php echo translateDate($dateDebut); ?>
 																				   au <?php echo translateDate($dateFin,
 									true); ?></span>
 						</div>
