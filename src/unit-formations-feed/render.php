@@ -63,6 +63,7 @@ if ($sessionsAVenir->have_posts()):
 			<?php
 
 			foreach ($formations as $formation) {
+				$full = false;
 				$post = get_post($formation);
 				$typeFormation = get_field('type_de_formation', $post->ID);
 				if ($typeFormation['value'] === 'base')
