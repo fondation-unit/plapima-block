@@ -78,10 +78,22 @@ if ($sessionsAVenir->have_posts()):
 
 				$dateDebut = get_field('date_de_debut', $sessionsFutures[$formation]);
 				$dateFin = get_field('date_de_fin', $sessionsFutures[$formation]);
-
+				if (isset($sessionsFutures[$post->ID])):
+					$placesRestantes = get_field('places_restantes', $sessionsFutures[$post->ID]);
+					if($placesRestantes <=2 ){
+						$full = true;
+					}
+				endif;
 				?>
 				<div class="formation-home-card d-flex flex-column rounded mb-4">
 					<div class="image">
+						<?php
+						if ($full):
+							?>
+							<div class="full d-flex justify-content-center"><?php echo $placesRestantes == 0 ?'Complet':'Dernières places'; ?></div>
+						<?php
+						endif;
+						?>
 						<img src="<?php echo $img['src']; ?>" alt="">
 					</div>
 
